@@ -37,14 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Start polling for live stats updates - thanks chat gpt for teaching me this simple trick
-    setInterval(refreshLiveStats, 30000); // Poll every 10 seconds
+    // Start polling for live stats updates
+    setInterval(refreshLiveStats, 30000); // Poll every 30 seconds
 
     // Start polling for slots/status updates
-    setInterval(refreshSlotsStatus, 21600000); // Poll every 6 hrs
+    setInterval(refreshSlotsStatus, 21600000); // Poll every 6 hours
 });
 
-function refreshLiveStats() {
+function refreshLiveStats(event) {
+    event.stopPropagation(); // Prevent the section from closing
     fetch('/api/live_stats')
         .then(response => response.json())
         .then(data => {

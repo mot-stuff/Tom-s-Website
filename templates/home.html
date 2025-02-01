@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="dark bg-gray-100 text-gray-800">
     <header class="bg-blue-600 text-white flex justify-between items-center header">
@@ -49,11 +50,16 @@
             <div class="section-header">
                 <div onclick="toggleSection(this)">
                     <h2 class="text-2xl font-semibold mb-4">Live Stats<span style="padding-right: 15px;"></span></h2>
-                    {% if available_slots == 'maintenance' %}
-                        <span class="status-text text-red-800">Paused for maintenance</span>
-                    {% else %}
-                        <span class="status-text text-green-800">Active and tracking</span>
-                    {% endif %}
+                    <div class="status-wrapper" style="position: relative; top: -10px;">
+                        {% if available_slots == 'maintenance' %}
+                            <span class="status-text text-red-800">Paused for maintenance</span>
+                        {% else %}
+                            <span class="status-text text-green-800">Active and tracking</span>
+                        {% endif %}
+                        <button class="refresh-button" onclick="refreshLiveStats(event)">
+                            <i class="fas fa-sync-alt refresh-icon"></i>
+                        </button>
+                    </div>
                 </div>
                 <button class="toggle-button" onclick="toggleSection(this)">+</button>
             </div>
@@ -72,6 +78,7 @@
                         <p id="unique-builds" class="text-lg font-bold">{% if available_slots == 'maintenance' %}N/A{% else %}{{ available_slots }}{% endif %}</p>
                     </div>
                 </div>
+                <p class="text-sm text-gray-800 mt-4" style="opacity: 0.4;">Updates every 30 seconds</p>
             </div>
         </section>
 

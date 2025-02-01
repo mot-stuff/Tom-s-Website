@@ -292,9 +292,15 @@ body.dark .slots-counter.text-green-800 {
 .refresh-button {
     background-color: transparent;
     border: none;
-    font-size: 1.5rem;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+}
+
+.refresh-icon {
+    font-size: 1.2rem;
+    color: white;
 }
 
 .refresh-button:hover {
@@ -432,7 +438,17 @@ body.dark .collapsible-content {
     opacity: 0.5;
 }
 
+.status-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    top: -10px; /* Move up by 10px */
+}
+
 .status-text {
+    display: inline-flex;
+    align-items: center;
     padding: 2px 8px;
     border-radius: 4px;
     border: 2px solid;
