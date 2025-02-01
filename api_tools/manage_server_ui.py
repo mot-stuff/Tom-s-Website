@@ -97,7 +97,7 @@ class ServerManagementUI(QtWidgets.QWidget):
 
         offerings_form_layout = QtWidgets.QFormLayout()
         self.tag_dropdown = QtWidgets.QComboBox()
-        self.tag_dropdown.addItems(['Combat', 'Skilling', 'Bossing', 'Minigame', 'PKing'])
+        self.tag_dropdown.addItems(['Combat', 'Skilling', 'Bossing', 'Minigame', 'PKing', 'General Features'])
         self.image_dropdown = QtWidgets.QComboBox()
         self.image_dropdown.addItems(self.get_image_files())
         self.title_entry = QtWidgets.QLineEdit()
