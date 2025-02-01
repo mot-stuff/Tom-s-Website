@@ -9,8 +9,8 @@ API_KEY = os.getenv('API_KEY', 'default_api_key')  # Use environment variable fo
 print(f'Loaded API_KEY: {API_KEY}')  # Debug statement to verify API key
 
 BASE_URL = 'http://localhost:8095'
-IMAGES_DIR = 'C:/Users/tomal/OneDrive/Desktop/Wesbite/static/images'
-ICON_PATH = 'C:/Users/tomal/OneDrive/Desktop/Wesbite/static/images/MainLogo.ico'
+IMAGES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'static', 'images')
+ICON_PATH = os.path.join(IMAGES_DIR, 'MainLogo.ico')
 
 class ServerManagementUI(QtWidgets.QWidget):
     def __init__(self):

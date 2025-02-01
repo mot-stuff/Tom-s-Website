@@ -38,7 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Start polling for live stats updates - thanks chat gpt for teaching me this simple trick
-    setInterval(refreshLiveStats, 10000); // Poll every 10 seconds
+    setInterval(refreshLiveStats, 30000); // Poll every 10 seconds
+
+    // Start polling for slots/status updates
+    setInterval(refreshSlotsStatus, 21600000); // Poll every 6 hrs
 });
 
 function refreshLiveStats() {
@@ -49,6 +52,28 @@ function refreshLiveStats() {
             document.getElementById('hours-botted').innerText = data.hours_botted;
         })
         .catch(error => console.error('Error fetching live stats:', error));
+}
+
+function refreshSlotsStatus() {
+    fetch('/api/slots_status')
+        .then(response => response.json())
+        .then(data => {
+            const slotsCounter = document.querySelector('.slots-counter');
+            if (data.available_slots === 'maintenance') {
+                slotsCounter.innerHTML = '<p class="text-lg font-bold">Currently down for maintenance</p>';
+                slotsCounter.classList.add('maintenance');
+                slotsCounter.classList.remove('bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
+            } else if (data.available_slots <= 100) {
+                slotsCounter.innerHTML = `<p class="text-lg font-bold">${data.available_slots}/100 slots full | Status: SAFE</p>`;
+                slotsCounter.classList.add('bg-green-100', 'text-green-800');
+                slotsCounter.classList.remove('maintenance', 'bg-red-100', 'text-red-800');
+            } else {
+                slotsCounter.innerHTML = '<p class="text-lg font-bold">Slots are full. Please check back later or use a referral to bypass.</p>';
+                slotsCounter.classList.add('bg-red-100', 'text-red-800');
+                slotsCounter.classList.remove('maintenance', 'bg-green-100', 'text-green-800');
+            }
+        })
+        .catch(error => console.error('Error fetching slots/status:', error));
 }
 
 function toggleSection(element) {

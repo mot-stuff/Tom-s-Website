@@ -340,6 +340,15 @@ def api_live_stats():
         app.logger.error(f"Error in api_live_stats endpoint: {e}")
         return jsonify({'status': 'error', 'message': 'Internal Server Error'}), 500
 
+@app.route('/api/slots_status', methods=['GET'])
+def api_slots_status():
+    try:
+        available_slots = get_available_slots()
+        return jsonify({'available_slots': available_slots}), 200
+    except Exception as e:
+        app.logger.error(f"Error in api_slots_status endpoint: {e}")
+        return jsonify({'status': 'error', 'message': 'Internal Server Error'}), 500
+
 @app.route('/images/<path:filename>')
 def serve_image(filename):
     return send_from_directory('static/images', filename)
