@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeRS.io | Home of the best Python bot</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body class="dark bg-gray-100 text-gray-800">
+    <header class="bg-blue-600 text-white flex justify-between items-center header">
+        <div class="flex items-center">
+            <img src="{{ url_for('static', filename='Safe_RS_Trans4.png') }}" alt="Logo" class="logo">
+            <h1 class="header-title">SAFERS</h1>
+        </div>
+        <div class="flex items-center">
+            <a href="https://discord.gg/safers" class="bg-white text-blue-600 px-4 py-2 rounded-full flex items-center discord-button">
+                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.211.375-.444.864-.608 1.249-1.844-.276-3.68-.276-5.486 0-.164-.393-.405-.874-.617-1.249a.077.077 0 00-.079-.037c-1.417.276-3.36.844-4.885 1.515a.07.07 0 00-.037.027C.533 9.073-.32 13.624.099 18.129a.082.082 0 00.031.056c2.052 1.515 4.041 2.422 5.992 3.037a.077.077 0 00.084-.027c.461-.63.874-1.295 1.237-1.992a.076.076 0 00-.041-.105c-.652-.249-1.27-.568-1.865-.935a.077.077 0 01-.008-.127c.125-.094.25-.188.37-.284a.074.074 0 01.077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 01.079.008c.12.096.244.19.369.284a.077.077 0 01-.006.127 12.509 12.509 0 01-1.866.935.076.076 0 00-.04.105c.375.697.788 1.362 1.238 1.992a.077.077 0 00.084.027c1.951-.615 3.94-1.522 5.992-3.037a.077.077 0 00.031-.056c.5-5.177-.838-9.68-3.548-13.733a.061.061 0 00-.037-.027zM8.02 15.662c-1.18 0-2.156-1.08-2.156-2.399 0-1.319.953-2.399 2.156-2.399 1.21 0 2.17 1.08 2.156 2.399 0 1.319-.953 2.399-2.156 2.399zm7.96 0c-1.18 0-2.156-1.08-2.156-2.399 0-1.319.953-2.399 2.156-2.399 1.21 0 2.17 1.08 2.156 2.399 0 1.319-.953 2.399-2.156 2.399z"/>
+                </svg>
+                Join our Discord
+            </a>
+        </div>
+    </header>
+    <div class="container">
+        <section class="bg-white p-6 mt-6 border border-gray-300 rounded-lg section-box">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="text-2xl font-semibold mb-4">Welcome to SafeRS</h2>
+                <button class="toggle-button">-</button>
+            </div>
+            <div class="section-content" style="display: block;">
+                <p>SafeRS is the premiere botting standard for OSRS in 2025. We offer completely unique biohashed builds resistent to profiling and will always and forever remain ultra-private for the best customer satisfaction.</p>
+                <div class="slots-counter {% if available_slots == 'maintenance' %}maintenance{% else %}{{ 'bg-red-100 text-red-800' if available_slots|int > 100 else 'bg-green-100 text-green-800' }}{% endif %} p-4 rounded-lg mt-4 tooltip">
+                    {% if available_slots == 'maintenance' %}
+                        <p class="text-lg font-bold">Currently down for maintenance</p>
+                    {% elif available_slots|int <= 100 %}
+                        <p class="text-lg font-bold">{{ available_slots }}/100 slots full | Status: SAFE</p>
+                    {% else %}
+                        <p class="text-lg font-bold">Slots are full. Please check back later or use a referral to bypass.</p>
+                    {% endif %}
+                    <img src="{{ url_for('static', filename='Safe_RS_Trans4.png') }}" alt="Logo" class="status-logo">
+                    <span class="tooltiptext">If slots are full we open new ones on the first of the month. You can bypass this with a referral. Renew within 24 hrs to retain your slot</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white p-6 mt-6 border border-gray-300 rounded-lg section-box">
+            <div class="section-header">
+                <div onclick="toggleSection(this)">
+                    <h2 class="text-2xl font-semibold mb-4">Live Stats<span style="padding-right: 15px;"></span></h2>
+                    {% if available_slots == 'maintenance' %}
+                        <span class="status-text text-red-800">Paused for maintenance</span>
+                    {% else %}
+                        <span class="status-text text-green-800">Active and tracking</span>
+                    {% endif %}
+                </div>
+                <button class="toggle-button" onclick="toggleSection(this)">+</button>
+            </div>
+            <div class="section-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-100 p-4 rounded-lg text-center live-stats-panel">
+                        <h3 class="text-xl font-bold mb-2">XP Gained</h3>
+                        <p id="xp-gained" class="text-lg font-bold">{{ xp_gained }}</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg text-center live-stats-panel">
+                        <h3 class="text-xl font-bold mb-2">Hours Botted Total</h3>
+                        <p id="hours-botted" class="text-lg font-bold">{{ hours_botted }}</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg text-center live-stats-panel">
+                        <h3 class="text-xl font-bold mb-2">Unique Builds Active</h3>
+                        <p id="unique-builds" class="text-lg font-bold">{% if available_slots == 'maintenance' %}N/A{% else %}{{ available_slots }}{% endif %}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white p-6 mt-6 border border-gray-300 rounded-lg section-box">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="text-2xl font-semibold mb-4">Included Scripts</h2>
+                <button class="toggle-button">+</button>
+            </div>
+            <div class="section-content">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <select id="tagFilter" class="border p-2 rounded cursor-pointer" style="color: black; width: 150px;">
+                            <option value="All">All</option>
+                            <option value="Skilling">Skilling</option>
+                            <option value="Combat">Combat</option>
+                            <option value="Minigame">Minigame</option>
+                            <option value="Bossing">Bossing</option>
+                            <option value="PKing">PKing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="script-list" id="script-list">
+                    {% for offering in offerings %}
+                    <div class="script-card" data-tag="{{ offering[1] }}">
+                        <img src="{{ url_for('static', filename=offering[2]) }}" alt="{{ offering[3] }}">
+                        <div>
+                            <h3>{{ offering[3] }}</h3>
+                            <p>{{ offering[4] }}</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p>No offerings available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white p-6 mt-6 border border-gray-300 rounded-lg section-box">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="text-2xl font-semibold mb-4">Prices</h2>
+                <button class="toggle-button">+</button>
+            </div>
+            <div class="section-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {% for plan, price in pricing %}
+                    <div class="bg-gray-100 p-4 rounded-lg text-center pricing-panel">
+                        <h3 class="text-xl font-bold mb-2">{{ plan }}</h3>
+                        <p class="text-lg font-bold">${{ price }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    </div>
+    <footer class="footer">
+        <a href="https://github.com/mot-stuff" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                 alt="GitHub icon"
+                 class="footer-github-icon">
+        </a>
+        <p>© 2025 SafeRS</p>
+    </footer>
+</body>
+</html>

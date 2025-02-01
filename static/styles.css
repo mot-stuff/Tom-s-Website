@@ -1,0 +1,463 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+body.dark {
+    background-color: #121212;
+    color: #e4e4e4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body.dark header {
+    background-color: #1e1e1e;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+main {
+    padding: 2rem;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    color: #666;
+}
+
+body.dark h2 {
+    color: #fff;
+}
+
+body.dark p {
+    color: #e4e4e4;
+}
+
+.pricing-panel {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+body.dark .pricing-panel {
+    background-color: #1e1e1e;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    color: #e4e4e4;
+}
+
+body.dark .pricing-panel:hover {
+    transform: scale(1.05);
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.pricing-panel:hover {
+    transform: scale(1.05);
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.pricing-panel:hover p {
+    color: #000000;
+}
+
+.live-stats-panel {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+body.dark .live-stats-panel {
+    background-color: #1e1e1e;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    color: #e4e4e4;
+}
+
+body.dark .live-stats-panel:hover {
+    transform: scale(1.05);
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.live-stats-panel:hover {
+    transform: scale(1.05);
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.live-stats-panel:hover p {
+    color: #000000;
+}
+
+.section-box {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+body.dark .section-box {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+.header {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.discord-button {
+    transition: transform 0.3s ease-in-out;
+}
+
+body.dark .discord-button {
+    background-color: #333;
+    color: #fff;
+}
+
+.discord-button:hover {
+    transform: scale(1.05);
+}
+
+.logo {
+    width: 30px;
+    height: auto;
+    margin-right: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.header-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    line-height: 1.2;
+}
+
+.slots-counter {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+}
+
+.bg-green-100 {
+    background-color: #48de91;
+}
+
+.text-green-800 {
+    color: #065f46;
+}
+
+body.dark .slots-counter.bg-green-100 {
+    background-color: #064e3b;
+}
+
+body.dark .slots-counter.text-green-800 {
+    color: #d1fae5;
+}
+
+.bg-red-100 {
+    background-color: #ef5757;
+}
+
+.text-red-800 {
+    color: #991b1b;
+}
+
+.slots-counter.maintenance {
+    background-color: #466edbb7;
+    color: #ffffff;
+}
+
+.script-card {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.script-card:hover {
+    transform: scale(1.05);
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.script-card:hover p {
+    color: #000000;
+}
+
+.script-card img {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+}
+
+.script-card h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.script-card p {
+    margin: 0;
+}
+
+.script-list {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: white transparent;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.script-list .script-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 300px;
+    margin-right: 1rem;
+}
+
+.script-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.script-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.script-list::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 4px;
+    border: none;
+}
+
+.script-list-wrapper {
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.scroll-button {
+    position: static;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    margin-right: 0.5rem;
+}
+
+.scroll-button:hover {
+    background-color: transparent;
+    color: white;
+}
+
+.refresh-button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.refresh-button:hover {
+    transform: rotate(90deg);
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 830px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    margin-left: -395px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip .tooltiptext2 {
+    visibility: hidden;
+    width: 230px;
+    background-color: #555;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: -1%;
+    left: 50%;
+    margin-left: -340px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    font-size: 0.875rem;
+}
+
+.tooltip:hover .tooltiptext2 {
+    visibility: visible;
+    opacity: 1;
+}
+
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.collapsible-content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+body.dark .collapsible {
+    background-color: #333;
+}
+
+body.dark .collapsible:hover {
+    background-color: #555;
+}
+
+body.dark .collapsible-content {
+    background-color: #1e1e1e;
+    color: #e4e4e4;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem 1rem; /* Adjust padding to reduce vertical spacing */
+    margin: 0; /* Remove margin to reduce vertical spacing */
+}
+
+.section-header > div {
+    display: flex;
+    align-items: center;
+}
+
+.section-header > div > span {
+    padding-left: 10px;
+    position: relative;
+    top: -8px; /* Move down by 10px */
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.section-content {
+    display: none;
+    padding-top: 1rem;
+}
+
+.status-logo {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 27px;
+    height: auto;
+    opacity: 0.5;
+}
+
+.status-text {
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 2px solid;
+}
+
+.text-red-800 {
+    border-color: #991b1b;
+}
+
+.text-green-800 {
+    border-color: #065f46;
+}
+
+.footer {
+  margin-top: 4rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.footer-github-icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  margin-right: 1rem;
+  filter: brightness(0) invert(1);
+}
