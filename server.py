@@ -10,7 +10,7 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
 API_KEY = os.getenv('API_KEY', 'default_api_key')  # Use environment variable for API key
-app.logger.debug(f'Loaded API_KEY: {API_KEY}')  # Debug statement to verify API key
+app.logger.debug(f'Loaded API KEY.')  # Debug statement to verify API key
 
 def get_available_slots():
     conn = sqlite3.connect('database.db')
@@ -141,12 +141,12 @@ def home():
         offerings = get_all_offerings()
         live_stats = get_live_stats()
         return render_template('home.html',
-                               available_slots=available_slots,
-                               pricing=pricing,
-                               offerings=offerings,
-                               xp_gained=live_stats[0],
-                               hours_botted=live_stats[1],
-                               unique_builds=live_stats[2])
+        available_slots=available_slots,
+        pricing=pricing,
+        offerings=offerings,
+        xp_gained=live_stats[0],
+        hours_botted=live_stats[1],
+        unique_builds=live_stats[2])
     except Exception as e:
         app.logger.error(f"Error in home route: {e}")
         return "Internal Server Error", 500
